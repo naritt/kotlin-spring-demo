@@ -34,6 +34,7 @@ jobs:
           username: _json_key
           password: ${{ secrets.GAR_CREDENTAILS }}
   Terraform:
+    needs: build-and-push
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
