@@ -6,6 +6,10 @@ resource "google_cloud_run_service" "demo" {
     spec {
       containers {
         image = "asia-southeast1-docker.pkg.dev/feisty-reporter-335214/cloud-run-source-deploy/kotlin-demo:latest"
+        env {
+          name = "ENVIRONMENT"
+          value = "dev"
+        }
       }
     }
   }
