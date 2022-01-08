@@ -19,6 +19,7 @@ class MessageResource {
 		Message("1", "Hello!"),
 		Message("2", "Bonjour!"),
 		Message("3", "Privet!"),
+		Message("4", "Ahoj"),
 	)
 }
 

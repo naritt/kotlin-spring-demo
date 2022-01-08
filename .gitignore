@@ -35,3 +35,10 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Terraform ###
+.terraform
+
+### Other ###
+.DS_Store
+terraform-credential.json
