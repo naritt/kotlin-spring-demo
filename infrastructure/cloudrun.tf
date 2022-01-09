@@ -5,7 +5,7 @@ resource "google_cloud_run_service" "demo" {
   template {
     spec {
       containers {
-        image = "asia-southeast1-docker.pkg.dev/feisty-reporter-335214/cloud-run-source-deploy/kotlin-demo:latest"
+        image = "asia-southeast1-docker.pkg.dev/feisty-reporter-335214/demo-docker-registry/kotlin-demo:latest"
         env {
           name = "ENVIRONMENT"
           value = "dev"

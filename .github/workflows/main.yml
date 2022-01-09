@@ -27,12 +27,12 @@ jobs:
       - uses: mr-smithers-excellent/docker-build-push@v5
         name: Build & push Docker image
         with:
-          image: feisty-reporter-335214/cloud-run-source-deploy/kotlin-demo
+          image: feisty-reporter-335214/demo-docker-registry/kotlin-demo
           tags: latest
           registry: asia-southeast1-docker.pkg.dev
           dockerfile: Dockerfile
           username: _json_key
-          password: ${{ secrets.GAR_CREDENTAILS }}
+          password: ${{ secrets.GOOGLE_CREDENTIALS }}
   Terraform:
     needs: build-and-push
     runs-on: ubuntu-latest
