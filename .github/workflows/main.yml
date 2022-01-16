@@ -71,7 +71,7 @@ jobs:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
       - name: terraform workspace
         working-directory: ./infrastructure
-        run: terraform workspace select dev || terraform workspace new dev
+        run: terraform workspace select uat || terraform workspace new uat
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
       - name: terraform apply
