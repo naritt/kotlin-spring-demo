@@ -1,6 +1,7 @@
 package demo.configuration
 
 import com.google.common.base.Predicates
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import springfox.documentation.builders.ApiInfoBuilder
@@ -16,6 +17,9 @@ import java.util.Optional
 @Configuration
 @EnableSwagger2
 class SwaggerConfig {
+    @Value("\${environment.name}")
+    private var environment: String = ""
+
     @Bean
     fun api(): Docket? {
         return Docket(DocumentationType.SWAGGER_2)
@@ -32,8 +36,8 @@ class SwaggerConfig {
 
     private fun metadata(): ApiInfo? {
         return ApiInfoBuilder()
-            .title("Demo API")
-            .description("Demo API")
+            .title("$environment Demo API")
+            .description("$environment Demo API")
             .version("0.0.1")
             .build()
     }

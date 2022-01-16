@@ -1,5 +1,5 @@
 resource "google_cloud_run_service" "demo" {
-  name     = "demo-terraform"
+  name     = "${var.environment_name}-demo-terraform"
   location = "asia-southeast1"
 
   template {
@@ -8,7 +8,11 @@ resource "google_cloud_run_service" "demo" {
         image = "asia-southeast1-docker.pkg.dev/feisty-reporter-335214/demo-docker-registry/kotlin-demo:latest"
         env {
           name = "ENVIRONMENT"
-          value = "dev"
+          value = var.environment_name
+        }
+        env {
+          name = "SPRING_PROFILES_ACTIVE"
+          value = var.environment_name
         }
       }
     }

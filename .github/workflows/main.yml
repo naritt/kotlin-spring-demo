@@ -33,7 +33,7 @@ jobs:
           dockerfile: Dockerfile
           username: _json_key
           password: ${{ secrets.GOOGLE_CREDENTIALS }}
-  Terraform:
+  deploy-dev:
     needs: build-and-push
     runs-on: ubuntu-latest
     steps:
@@ -49,5 +49,23 @@ jobs:
       - name: terraform apply
         working-directory: ./infrastructure
         run: terraform apply --var-file=dev.tfvars -auto-approve
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+  deploy-uat:
+    needs: deploy-dev
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        name: checkout code
+      - uses: hashicorp/setup-terraform@v1
+        name: setup terraform
+      - name: terraform init
+        working-directory: ./infrastructure
+        run: terraform init
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+      - name: terraform apply
+        working-directory: ./infrastructure
+        run: terraform apply --var-file=uat.tfvars -auto-approve
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
