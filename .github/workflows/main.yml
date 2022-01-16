@@ -46,6 +46,11 @@ jobs:
         run: terraform init
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+      - name: terraform workspace
+        working-directory: ./infrastructure
+        run: terraform workspace select dev || terraform workspace new dev
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
       - name: terraform apply
         working-directory: ./infrastructure
         run: terraform apply --var-file=dev.tfvars -auto-approve
@@ -62,6 +67,11 @@ jobs:
       - name: terraform init
         working-directory: ./infrastructure
         run: terraform init
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+      - name: terraform workspace
+        working-directory: ./infrastructure
+        run: terraform workspace select dev || terraform workspace new dev
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
       - name: terraform apply
